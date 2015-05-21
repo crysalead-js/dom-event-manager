@@ -1,0 +1,19 @@
+{
+  "name": "dom-event-manager",
+  "version": "1.0.0",
+  "description": "DOM event manager.",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/crysalead-js/dom-event-manager.git"
+  },
+  "dependencies": {
+    "component-event": "^0.1.4"
+  },
+  "devDependencies": {
+    "jasmine": "^2.2.1",
+    "jsdom": "3.1.2"
+  },
+  "scripts": {
+    "test": "jasmine"
+  }
+}

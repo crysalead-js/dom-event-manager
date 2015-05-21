@@ -1,0 +1,9 @@
+{
+  "spec_dir": "spec",
+  "spec_files": [
+    "event-manager-spec.js"
+  ],
+  "helpers": [
+    "helpers/**/*.js"
+  ]
+}
