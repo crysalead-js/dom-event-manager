@@ -34,7 +34,7 @@ describe("EventManager", function() {
       new EventManager();
     };
 
-    expect(closure).toThrow(new Error("The passed event handler function is invalid"));
+    expect(closure).toThrow(new Error("The passed handler function is invalid"));
 
   });
 
@@ -129,11 +129,12 @@ describe("EventManager", function() {
         'focus',
         'input',
         'keydown',
+        'keypress',
         'keyup',
         'mousedown',
+        'mouseenter',
+        'mouseleave',
         'mousemove',
-        'mouseout',
-        'mouseover',
         'mouseup',
         'paste',
         'scroll',
@@ -141,7 +142,8 @@ describe("EventManager", function() {
         'touchcancel',
         'touchend',
         'touchmove',
-        'touchstart'
+        'touchstart',
+        'wheel'
       ]);
 
     });

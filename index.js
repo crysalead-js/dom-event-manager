@@ -105,11 +105,12 @@ EventManager.defaultEvents = [
   'focus',
   'input',
   'keydown',
+  'keypress',
   'keyup',
   'mousedown',
+  'mouseenter',
+  'mouseleave',
   'mousemove',
-  'mouseout',
-  'mouseover',
   'mouseup',
   'paste',
   'scroll',
@@ -117,7 +118,8 @@ EventManager.defaultEvents = [
   'touchcancel',
   'touchend',
   'touchmove',
-  'touchstart'
+  'touchstart',
+  'wheel'
 ];
 
 module.exports = EventManager;
