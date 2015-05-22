@@ -12,7 +12,7 @@ var isArray = Array.isArray;
  */
 function EventManager(delegateHandler, container) {
   if (typeof(delegateHandler) !== "function") {
-    throw new Error("The passed event handler function is invalid");
+    throw new Error("The passed handler function is invalid");
   }
   this._delegateHandler = delegateHandler;
   this._container = container || document.body;
