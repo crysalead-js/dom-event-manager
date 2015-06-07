@@ -1,4 +1,4 @@
-var events = require("component-event");
+var event = require("./event");
 
 var isArray = Array.isArray;
 
@@ -45,7 +45,7 @@ EventManager.prototype.bind = function(name) {
     this.unbind(name);
   }
   this._events[name] = bubbleEvent;
-  events.bind(this._container, name, bubbleEvent);
+  event.bind(this._container, name, bubbleEvent);
 };
 
 /**
@@ -56,7 +56,7 @@ EventManager.prototype.bind = function(name) {
 EventManager.prototype.unbind = function(name) {
   if (arguments.length) {
     if (this._events[name]) {
-      events.unbind(this._container, name, this._events[name]);
+      event.unbind(this._container, name, this._events[name]);
     }
     return;
   }
