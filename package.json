@@ -1,7 +1,8 @@
 {
   "name": "dom-event-manager",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "DOM event manager.",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "http://github.com/crysalead-js/dom-event-manager.git"
