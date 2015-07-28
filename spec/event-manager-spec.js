@@ -19,7 +19,7 @@ describe("EventManager", function() {
       if (id === "a-b") {
         e.stopPropagation();
       }
-    });
+    }, document.getElementById('a'));
   });
 
   afterEach(function() {
