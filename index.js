@@ -2,6 +2,11 @@ var event = require("./event");
 
 var isArray = Array.isArray;
 
+var capturable = {
+  'blur': true,
+  'focus': true
+};
+
 /**
  * Captures all event on at a top level container (`document.body` by default).
  * When an event occurs, the delegate handler is executed starting form `event.target` up
@@ -45,7 +50,7 @@ EventManager.prototype.bind = function(name) {
     this.unbind(name);
   }
   this._events[name] = bubbleEvent;
-  event.bind(this._container, name, bubbleEvent);
+  event.bind(this._container, name, bubbleEvent, capturable[name] !== undefined);
 };
 
 /**
@@ -56,7 +61,7 @@ EventManager.prototype.bind = function(name) {
 EventManager.prototype.unbind = function(name) {
   if (arguments.length) {
     if (this._events[name]) {
-      event.unbind(this._container, name, this._events[name]);
+      event.unbind(this._container, name, this._events[name], capturable[name] !== undefined);
     }
     return;
   }
