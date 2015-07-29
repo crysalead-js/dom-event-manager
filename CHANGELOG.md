@@ -2,6 +2,11 @@
 
 ## HEAD
 
+## 1.0.4 (2015-07-29)
+
+  * **Change:** use document as default root node.
+  * **Bugfix:** makes `focus` and `blur` event capturable.
+
 ## 1.0.3 (2015-07-29)
 
   * **Bugfix:** makes sure the event bubbles up to the container included.
