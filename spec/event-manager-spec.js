@@ -163,7 +163,7 @@ describe("EventManager", function() {
       eventManager = new EventManager(function(name, e) {
         var id = e.delegateTarget.id;
         logs.push({ name: name, id: id });
-      });
+      }, document.body);
     });
 
     afterEach(function() {

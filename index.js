@@ -20,7 +20,7 @@ function EventManager(delegateHandler, container) {
     throw new Error("The passed handler function is invalid");
   }
   this._delegateHandler = delegateHandler;
-  this._container = container || document.body;
+  this._container = container || document;
   this._events = Object.create(null);
 }
 
