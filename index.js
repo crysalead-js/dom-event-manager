@@ -4,7 +4,9 @@ var isArray = Array.isArray;
 
 var capturable = {
   'blur': true,
-  'focus': true
+  'focus': true,
+  'mouseenter': true,
+  'mouseleave': true
 };
 
 /**
@@ -116,6 +118,8 @@ EventManager.defaultEvents = [
   'mouseenter',
   'mouseleave',
   'mousemove',
+  'mouseout',
+  'mouseover',
   'mouseup',
   'paste',
   'scroll',

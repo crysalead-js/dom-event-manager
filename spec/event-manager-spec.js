@@ -57,6 +57,8 @@ describe("EventManager", function() {
         'mouseenter',
         'mouseleave',
         'mousemove',
+        'mouseout',
+        'mouseover',
         'mouseup',
         'paste',
         'scroll',
