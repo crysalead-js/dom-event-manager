@@ -2,10 +2,15 @@
 
 ## HEAD
 
+## 1.0.5 (2015-08-12)
+
+  * **Add:** adds `mouseover` and `mouseout`.
+  * **Bugfix:** makes `mouseenter` and `mouseleave` events capturable.
+
 ## 1.0.4 (2015-07-29)
 
   * **Change:** use document as default root node.
-  * **Bugfix:** makes `focus` and `blur` event capturable.
+  * **Bugfix:** makes `focus` and `blur` events capturable.
 
 ## 1.0.3 (2015-07-29)
 
