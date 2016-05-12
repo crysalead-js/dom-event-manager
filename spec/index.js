@@ -1,8 +1,3 @@
-var jsdom = require('jsdom');
-
-global.document = jsdom.jsdom();
-global.window = global.document.parentWindow;
-
 var triggerEvent = require("./helper/trigger-event");
 var EventManager = require("..");
 
@@ -33,7 +28,13 @@ describe("EventManager", function() {
       eventManager.bindDefaultEvents();
 
       expect(eventManager.binded().sort()).toEqual([
+        'abort',
+        'animationend',
+        'animationiteration',
+        'animationstart',
         'blur',
+        'canplay',
+        'canplaythrough',
         'change',
         'click',
         'contextmenu',
@@ -48,11 +49,21 @@ describe("EventManager", function() {
         'dragover',
         'dragstart',
         'drop',
+        'durationchange',
+        'emptied',
+        'encrypted',
+        'ended',
+        'error',
         'focus',
         'input',
+        'invalid',
         'keydown',
         'keypress',
         'keyup',
+        'load',
+        'loadeddata',
+        'loadedmetadata',
+        'loadstart',
         'mousedown',
         'mouseenter',
         'mouseleave',
@@ -61,12 +72,26 @@ describe("EventManager", function() {
         'mouseover',
         'mouseup',
         'paste',
+        'pause',
+        'play',
+        'playing',
+        'progress',
+        'ratechange',
+        'reset',
         'scroll',
+        'seeked',
+        'seeking',
+        'stalled',
         'submit',
+        'suspend',
+        'timeupdate',
         'touchcancel',
         'touchend',
         'touchmove',
         'touchstart',
+        'transitionend',
+        'volumechange',
+        'waiting',
         'wheel'
       ]);
 
@@ -86,8 +111,14 @@ describe("EventManager", function() {
 
   describe("with bubblable events", function() {
 
+    var testElement;
+
     beforeEach(function() {
-      document.body.innerHTML = '<div id="a"><div id="a-a"><div id="a-a-a"></div></div><div id="a-b"></div></div><div id="b"></div>';
+      testElement = document.createElement('div');
+      testElement.id = 'test';
+      testElement.innerHTML = '<div id="a"><div id="a-a"><div id="a-a-a"></div></div><div id="a-b"></div></div><div id="b"></div>';
+      document.body.appendChild(testElement);
+
       eventManager = new EventManager(function(name, e) {
         var id = e.delegateTarget.id;
         logs.push({ name: name, id: id });
@@ -98,7 +129,7 @@ describe("EventManager", function() {
     });
 
     afterEach(function() {
-      document.body.innerHTML = '';
+      document.body.removeChild(testElement);
       eventManager.unbind();
       logs = [];
     });
@@ -160,16 +191,21 @@ describe("EventManager", function() {
 
   describe("with non bubblable events", function() {
 
+    var testElement;
+
     beforeEach(function() {
-      document.body.innerHTML = '<input id="textInput" type="text" />';
+      testElement = document.createElement('div');
+      testElement.id = 'test';
+      testElement.innerHTML = '<input id="textInput" type="text" />';
+      document.body.appendChild(testElement);
       eventManager = new EventManager(function(name, e) {
         var id = e.delegateTarget.id;
         logs.push({ name: name, id: id });
-      }, document.body);
+      }, testElement);
     });
 
     afterEach(function() {
-      document.body.innerHTML = '';
+      document.body.removeChild = testElement;
       eventManager.unbind();
       logs = [];
     });

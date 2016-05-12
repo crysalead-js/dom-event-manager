@@ -1,7 +1,7 @@
 {
   "spec_dir": "spec",
   "spec_files": [
-    "event-manager-spec.js"
+    "index.js"
   ],
   "helpers": [
     "helpers/**/*.js"

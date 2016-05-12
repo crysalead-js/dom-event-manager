@@ -85,16 +85,22 @@ EventManager.prototype.binded = function() {
  * Binds some default events.
  */
 EventManager.prototype.bindDefaultEvents = function() {
-  for (var i = 0, len = EventManager.defaultEvents.length; i < len; i++) {
-    this.bind(EventManager.defaultEvents[i]);
+  for (var i = 0, len = EventManager.events.length; i < len; i++) {
+    this.bind(EventManager.events[i]);
   }
 };
 
 /**
- * List of default events.
+ * List of events.
  */
-EventManager.defaultEvents = [
+EventManager.events = [
+  'abort',
+  'animationstart',
+  'animationiteration',
+  'animationend',
   'blur',
+  'canplay',
+  'canplaythrough',
   'change',
   'click',
   'contextmenu',
@@ -109,11 +115,25 @@ EventManager.defaultEvents = [
   'dragover',
   'dragstart',
   'drop',
+  'durationchange',
+  'emptied',
+  'encrypted',
+  'ended',
+  'error',
   'focus',
   'input',
+  'invalid',
   'keydown',
   'keypress',
   'keyup',
+  'load',
+  'loadeddata',
+  'loadedmetadata',
+  'loadstart',
+  'pause',
+  'play',
+  'playing',
+  'progress',
   'mousedown',
   'mouseenter',
   'mouseleave',
@@ -122,12 +142,22 @@ EventManager.defaultEvents = [
   'mouseover',
   'mouseup',
   'paste',
+  'ratechange',
+  'reset',
   'scroll',
+  'seeked',
+  'seeking',
   'submit',
+  'stalled',
+  'suspend',
+  'timeupdate',
+  'transitionend',
   'touchcancel',
   'touchend',
   'touchmove',
   'touchstart',
+  'volumechange',
+  'waiting',
   'wheel'
 ];
 
