@@ -8,8 +8,8 @@
     "url": "http://github.com/crysalead-js/dom-event-manager.git"
   },
   "devDependencies": {
-    "jasmine": "^2.2.1",
-    "jsdom": "3.1.2"
+    "jasmine": "^2.4.1",
+    "jsdom": "9.0.0"
   },
   "scripts": {
     "test": "jasmine"
