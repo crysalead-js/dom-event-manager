@@ -187,6 +187,163 @@ describe("EventManager", function() {
 
     });
 
+    describe(".on()", function() {
+
+      it("adds an event listener", function(done) {
+
+        var clicked = false;
+        eventManager.bind("click");
+        eventManager.on('click', document.getElementById("a"), function() {
+          clicked = true;
+        });
+        triggerEvent("click", document.getElementById("a-a-a"));
+
+        setTimeout(function() {
+          expect(logs).toEqual([
+            { name: "click", id: "a-a-a" },
+            { name: "click", id: "a-a" },
+            { name: "click", id: "a" }
+          ]);
+          expect(clicked).toBe(true);
+          done();
+        }, 10);
+
+      });
+
+      it("add multiple event listeners", function(done) {
+
+        var value = 0;
+
+        eventManager.bind("click");
+
+        eventManager.on('click', document.getElementById("a"), function() {
+          value += 1;
+        });
+        eventManager.on('click', document.getElementById("a"), function() {
+          value += 2;
+        });
+
+        triggerEvent("click", document.getElementById("a"));
+
+        setTimeout(function() {
+          expect(value).toBe(3);
+          done();
+        }, 10);
+
+      });
+
+      it("does not run when event propagation has been stopped", function(done) {
+
+        var clicked = false;
+        eventManager.bind("click");
+        eventManager.on('click', document.getElementById("a"), function() {
+          clicked = true;
+        });
+        triggerEvent("click", document.getElementById("a-b"));
+
+        setTimeout(function() {
+          expect(logs).toEqual([
+            { name: "click", id: "a-b" }
+          ]);
+          expect(clicked).toBe(false);
+          done();
+        }, 10);
+
+      });
+
+    });
+
+    describe(".off()", function() {
+
+      it("removes an event listener", function(done) {
+
+        var clicked = false;
+        var listener = function() {
+          clicked = true;
+        };
+        eventManager.bind("click");
+        eventManager.on('click', document.getElementById("a"), listener);
+        eventManager.off('click', document.getElementById("a"), listener);
+        triggerEvent("click", document.getElementById("a"));
+
+        setTimeout(function() {
+          expect(clicked).toBe(false);
+          done();
+        }, 10);
+
+      });
+
+      it("removes a specific event listener", function(done) {
+
+        var value = 0;
+        var listener = function() {
+          value += 1;
+        };
+        eventManager.bind("click");
+        eventManager.on('click', document.getElementById("a"), listener);
+        eventManager.on('click', document.getElementById("a"), function() {
+          value += 2;
+        });
+        eventManager.off('click', document.getElementById("a"), listener);
+        triggerEvent("click", document.getElementById("a"));
+
+        setTimeout(function() {
+          expect(value).toBe(2);
+          done();
+        }, 10);
+
+      });
+
+      it("removes all handlers attached to a specific element only", function(done) {
+
+        var value = 0;
+        var listener = function() {
+          value += 1;
+        };
+        eventManager.bind("click");
+        eventManager.on('click', document.getElementById("a"), listener);
+        eventManager.on('click', document.getElementById("a"), function() {
+          value += 2;
+        });
+        eventManager.on('click', document.getElementById("a-a"), function() {
+          value += 4;
+        });
+        eventManager.off('click', document.getElementById("a"));
+        triggerEvent("click", document.getElementById("a-a"));
+
+        setTimeout(function() {
+          expect(value).toBe(4);
+          done();
+        }, 10);
+
+      });
+
+      it("removes all handlers attached to a specific event", function(done) {
+
+        var value = 0;
+        var listener = function() {
+          value += 1;
+        };
+        eventManager.bind("click");
+        eventManager.on('click', document.getElementById("a"), listener);
+        eventManager.on('click', document.getElementById("a"), function() {
+          value += 2;
+        });
+        eventManager.on('click', document.getElementById("a-a"), function() {
+          value += 4;
+        });
+        eventManager.off('click');
+        triggerEvent("click", document.getElementById("a-a"));
+
+        setTimeout(function() {
+          expect(value).toBe(0);
+          done();
+        }, 10);
+
+      });
+
+    });
+
   });
 
   describe("with non bubblable events", function() {

@@ -24,6 +24,7 @@ function EventManager(delegateHandler, container) {
   this._delegateHandler = delegateHandler;
   this._container = container || document;
   this._events = Object.create(null);
+  this._map = {};
 }
 
 /**
@@ -41,6 +42,7 @@ EventManager.prototype.bind = function(name) {
     }
     while(e.delegateTarget !== null && e.delegateTarget !== this._container.parentNode) {
       this._delegateHandler(name, e);
+      this._runHandlers(name, e);
       if (e.isPropagationStopped) {
         break;
       }
@@ -89,6 +91,73 @@ EventManager.prototype.bindDefaultEvents = function() {
     this.bind(EventManager.events[i]);
   }
 };
+
+/**
+ * Listen an event.
+ *
+ * @param String name    The event name listen.
+ * @param Object element The DOM element.
+ * @param String handler The handler.
+ */
+EventManager.prototype.on = function(event, element, handler) {
+  if (!this._map[event]) {
+    this._map[event] = new Map();
+  }
+  if (!this._map[event].has(element)) {
+    this._map[event].set(element, new Map());
+  }
+  this._map[event].get(element).set(handler, true);
+};
+
+
+/**
+ * Unlisten an event.
+ *
+ * @param String name    The event name listen.
+ * @param Object element The DOM element.
+ * @param String handler The handler.
+ */
+EventManager.prototype.off = function(event, element, handler) {
+  if (!this._map[event]) {
+    return;
+  }
+  if (arguments.length === 1) {
+    delete this._map[event];
+    return;
+  }
+  if (!this._map[event].has(element)) {
+    return;
+  }
+  if (arguments.length === 2) {
+    this._map[event].delete(element);
+    return;
+  }
+  var handlersMap = this._map[event].get(element);
+  if (!handlersMap.has(handler)) {
+    return;
+  }
+  handlersMap.delete(handler);
+};
+
+/**
+ * Unlisten an event.
+ *
+ * @param String name    The event name listen.
+ * @param Object element The DOM element.
+ * @param String handler The handler.
+ */
+EventManager.prototype._runHandlers = function(name, e) {
+  if (!this._map[name]) {
+    return;
+  }
+  if (!this._map[name].has(e.delegateTarget)) {
+    return;
+  }
+  var handlersMap = this._map[name].get(e.delegateTarget);
+  for (var [handler, value] of handlersMap) {
+    handler(e);
+  }
+}
 
 /**
  * List of events.
