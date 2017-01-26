@@ -153,10 +153,9 @@ EventManager.prototype._runHandlers = function(name, e) {
   if (!this._map[name].has(e.delegateTarget)) {
     return;
   }
-  var handlersMap = this._map[name].get(e.delegateTarget);
-  for (var [handler, value] of handlersMap) {
+  this._map[name].get(e.delegateTarget).forEach(function(value, handler) {
     handler(e);
-  }
+  });
 }
 
 /**
