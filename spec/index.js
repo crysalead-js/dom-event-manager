@@ -32,6 +32,7 @@ describe("EventManager", function() {
         'animationend',
         'animationiteration',
         'animationstart',
+        'auxclick',
         'blur',
         'canplay',
         'canplaythrough',

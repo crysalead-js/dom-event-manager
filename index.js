@@ -166,6 +166,7 @@ EventManager.events = [
   'animationstart',
   'animationiteration',
   'animationend',
+  'auxclick',
   'blur',
   'canplay',
   'canplaythrough',
