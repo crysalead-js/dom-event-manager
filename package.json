@@ -1,6 +1,6 @@
 {
   "name": "dom-event-manager",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "DOM event manager.",
   "license": "MIT",
   "repository": {
@@ -8,9 +8,9 @@
     "url": "http://github.com/crysalead-js/dom-event-manager.git"
   },
   "devDependencies": {
-    "browserify": "^13.0.1",
-    "jasmine": "^2.4.1",
-    "testem": "^1.7.0"
+    "browserify": "^16.2.3",
+    "jasmine": "^3.4.0",
+    "testem": "^2.16.0"
   },
   "scripts": {
     "test": "testem ci -l firefox"
