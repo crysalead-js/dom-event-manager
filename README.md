@@ -1,6 +1,6 @@
 # dom-event-manager
 
-[![Build Status](https://travis-ci.org/crysalead-js/dom-event-manager.svg?branch=master)](https://travis-ci.org/crysalead-js/dom-event-manager)
+[![Build Status](https://travis-ci.com/crysalead-js/dom-event-manager.svg?branch=master)](https://travis-ci.com/crysalead-js/dom-event-manager)
 
 The `EventManager` manage events in a delegated way. It captures all event on at a top level container (`document.body` by default). When an event occurs, the delegate handler is executed starting form `event.target` up to the defined container.
 
