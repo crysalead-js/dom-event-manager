@@ -8,9 +8,9 @@
     "url": "http://github.com/crysalead-js/dom-event-manager.git"
   },
   "devDependencies": {
-    "browserify": "^16.2.3",
-    "jasmine": "^3.4.0",
-    "testem": "^2.16.0"
+    "browserify": "^17.0.0",
+    "jasmine": "^3.7.0",
+    "testem": "^3.4.0"
   },
   "scripts": {
     "test": "testem ci -l firefox"
